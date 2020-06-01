@@ -33,7 +33,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O **Next Level Week** Bora coletar lixo da maneira certa!.
+**Next Level Week** - Bora coletar lixo da maneira certa!.
 
 ## 🤔 Como contribuir
 
