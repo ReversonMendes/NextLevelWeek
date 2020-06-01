@@ -28,15 +28,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React Native](https://facebook.github.io/react-native/)
 - [Expo](https://expo.io/)
 
-Extras:
-
-- Main Libs
+- Libs
   - [Express](https://expressjs.com/pt-br/)
- 
-- Estilos
-  - [EditorConfig](https://editorconfig.org/)
-  - [ESLint](https://eslint.org/)
-  - [Prettier](https://prettier.io/)
 
 ## 💻 Projeto
 
