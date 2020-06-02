@@ -6,7 +6,7 @@
 
   <img alt="Rocketseat - NLW" src=".github/rocket.svg" width="200px" />
   <br/>
-  🚀 Next Level Week
+  🚀 Next Level Week - Booster ♻️
 </h2>
 
 <p align="center">
