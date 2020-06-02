@@ -1,14 +1,17 @@
 ### Backend
 
-### Como executar ?
+### Instalar Dependências
+```bash
+$~ yarn
+```
+### Migrations
+```bash
+$~ yarn run knex:migrate
+```
+### Executar ?
 ```bash
 $~ yarn run dev
 ```
-
-### Migrations
-
-
-
 ### Entidades
 * ### Pontos de Coleta
   * Imagem
@@ -21,3 +24,6 @@ $~ yarn run dev
   * Imagem
   * Título
 * ### item_points(JOIN(Pontos de Coleta, Itens de Coleta))
+
+### Rotas
+...

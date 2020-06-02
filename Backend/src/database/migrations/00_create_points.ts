@@ -11,7 +11,7 @@ export async function up(knex: typeKnex) {
     table.string('city').notNullable();
     table.string('uf', 2).notNullable();
 
-    table.decimal('tatitude').notNullable();
+    table.decimal('latitude').notNullable();
     table.decimal('longitude').notNullable();
   })
 }

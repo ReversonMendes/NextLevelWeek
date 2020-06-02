@@ -1,9 +1,11 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-const app = Router()
+import PointsController from './controllers/PointsController';
+import ItemsController from './controllers/ItemsController';
 
-app.get('/', (request, response) => {
-  return response.json({ msg: 'Deu certo!' });
-})
+const itemsController = new ItemsController();
+const pointsController = new PointsController();
 
-export default app;
+export default Router()
+  .get("/items", itemsController.index)
+  .post("/points", pointsController.create);
