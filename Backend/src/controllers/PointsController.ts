@@ -3,6 +3,24 @@ import knex from "../database/connection";
 
 class PointsController {
 
+  async index(request: Request, response: Response) {
+    const { city, items, uf } = request.query;
+
+    const parsedItems = String(items)
+      .split(',')
+      .map(item => Number(item.trim()));
+
+    const points = await knex('points')
+      .join('points_items', 'points.id', '=', 'points_items.points_id')
+      .whereIn('points_items.items_id', parsedItems)
+      .where('city', String(city))
+      .where('uf', String(uf))
+      .distinct()
+      .select('points.*');
+
+    return response.json(points);
+  }
+
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
@@ -38,7 +56,6 @@ class PointsController {
       uf,
       items
     } = request.body;
-
 
     const pointsData = {
       image: "image-fake",
