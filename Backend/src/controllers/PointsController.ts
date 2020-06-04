@@ -25,10 +25,22 @@ class PointsController {
       city,
       uf,
     }
+    const trx = await knex.transaction();
+    const pointsId = await trx("points").insert(pointsData);
+    const points_id = pointsId[0];
+    const pointItems = items.map((items_id: number) => ({
+      items_id,
+      points_id
+    }))
 
-    await knex("points").insert(pointsData);
-    return response.json({ msg: true })
+    await trx("points_items").insert(pointItems);
+    await trx.commit();
+
+    return response.json({
+      points_id,
+      ...pointsData
+    })
   }
 }
 
-export default PointsController;
+export default new PointsController;
