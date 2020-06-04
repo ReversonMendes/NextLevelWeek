@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Request, Response } from 'express';
 import knex from "../database/connection";
 
@@ -58,7 +59,7 @@ class PointsController {
     } = request.body;
 
     const pointsData = {
-      image: "image-fake",
+      image: String(process.env.STATIC_IMAGE),
       name,
       email,
       whatsapp,

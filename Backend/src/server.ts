@@ -10,7 +10,7 @@ const pathStaticFiles = express.static(path.resolve(__dirname, '..', 'uploads'))
 
 app
   .set('port', process.env.PORT || 3000)
-  .use(cors)
+  .use(cors())
   .use(express.json())
   .use(routes)
   .use('/uploads', pathStaticFiles)
