@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
+import Routes from './routes';
 
 export default function App() {
-  return (
-
-    <h1>Olá, Mundo!</h1>
-
-  );
+  return <Routes />
 }
