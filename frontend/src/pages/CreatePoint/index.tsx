@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 import { FiArrowLeft } from 'react-icons/fi'
@@ -25,6 +25,7 @@ interface IBGECITYResponse {
 
 const CreatePoint: React.FC = () => {
 
+  const history = useHistory();
   const [items, setItems] = useState<Item[]>([]);
   const [ufs, setUfs] = useState<string[]>([]);
   const [citys, setCitys] = useState<string[]>([]);
@@ -122,7 +123,7 @@ const CreatePoint: React.FC = () => {
 
     await api.post('points', submitData);
     alert(submitData);
-
+    history.push('/')
   }
 
   return (
