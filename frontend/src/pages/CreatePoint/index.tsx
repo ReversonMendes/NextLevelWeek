@@ -1,9 +1,9 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Map, TileLayer, Marker } from 'react-leaflet';
+import { LeafletMouseEvent } from 'leaflet';
 import { FiArrowLeft } from 'react-icons/fi'
 import axios from 'axios';
-import { LeafletMouseEvent } from 'leaflet';
 
 import api from '../../services/api';
 import logo from '../../assets/logo.svg';
@@ -30,6 +30,13 @@ const CreatePoint: React.FC = () => {
   const [citys, setCitys] = useState<string[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    whatsapp: ''
+  })
+
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
@@ -79,8 +86,43 @@ const CreatePoint: React.FC = () => {
     ]);
   }
 
+  function handleSelectItem(idItem: number) {
+    selectedItems.includes(idItem) ?
+      setSelectedItems(selectedItems.filter(item => item !== idItem)) :
+      setSelectedItems([...selectedItems, idItem]);
+  }
+
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    console.log(event.target)
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    const { name, email, whatsapp } = formData;
+    const uf = selectedUf;
+    const city = selectedCity;
+    const [latitude, longitude] = selectedPosition;
+    const items = selectedItems;
+
+    const submitData = {
+      name,
+      email,
+      whatsapp,
+      uf,
+      city,
+      latitude,
+      longitude,
+      items
+    }
+
+    await api.post('points', submitData);
+    alert(submitData);
+
   }
 
   return (
@@ -93,7 +135,7 @@ const CreatePoint: React.FC = () => {
             Voltar para Home
           </Link>
         </header>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <h1>Cadastro do <br />ponto de coleta</h1>
           <fieldset>
             <legend>
@@ -185,7 +227,11 @@ const CreatePoint: React.FC = () => {
             </legend>
             <ul className="items-grid">
               {items.map(item => (
-                <li key={item.id} className="selected">
+                <li
+                  key={item.id}
+                  onClick={() => handleSelectItem(item.id)}
+                  className={selectedItems.includes(item.id) ? 'selected' : ''}
+                >
                   <img src={item.image_url} alt={item.name} />
                   <span>{item.name}</span>
                 </li>
