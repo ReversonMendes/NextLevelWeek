@@ -8,7 +8,7 @@ class ItemsController {
     const serializeItems = items.map(item => ({
       id: item.id,
       name: item.title,
-      image_url: `http://localhost:5000/uploads/${item.image}`
+      image_url: `http://192.168.0.8:5000/uploads/${item.image}`
     }))
     return response.json(serializeItems);
   }
