@@ -7,6 +7,7 @@
   <img alt="Rocketseat - NLW" src=".github/rocket.svg" width="200px" />
   <br/>
   🚀 Next Level Week - Booster ♻️
+  
 </h2>
 
 <p align="center">
@@ -28,8 +29,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React Native](https://facebook.github.io/react-native/)
 - [Expo](https://expo.io/)
 
-- Libs
-  - [Express](https://expressjs.com/pt-br/)
 
 ## 💻 Projeto
 
